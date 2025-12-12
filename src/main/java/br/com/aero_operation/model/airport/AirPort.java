@@ -31,7 +31,7 @@ public class AirPort {
     @Column(nullable = false)
     private String city;
 
-    @OneToMany(mappedBy = "airport", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Gate> gate = new ArrayList<>();
+    @OneToMany(mappedBy = "airPort", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Gate> gates = new ArrayList<>();
 
 }

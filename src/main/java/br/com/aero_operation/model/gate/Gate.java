@@ -1,7 +1,6 @@
 package br.com.aero_operation.model.gate;
 
 import br.com.aero_operation.model.airport.AirPort;
-import br.com.aero_operation.model.flight.Flight;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

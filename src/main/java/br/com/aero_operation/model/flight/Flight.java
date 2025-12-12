@@ -40,7 +40,6 @@ public class Flight {
     @JoinColumn(name = "destination_airport_id", nullable = false)
     private AirPort destination;
 
-
     @ManyToOne
     @JoinColumn(name = "origin_airport_id", nullable = false)
     private AirPort origin;
