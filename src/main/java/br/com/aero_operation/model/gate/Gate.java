@@ -19,11 +19,15 @@ public class Gate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private Long number;
+
+    @Column(nullable = false)
     private String terminal;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "airport_id")
+    @JoinColumn(name = "airport_id", nullable = false)
     private AirPort airPort;
 
 }

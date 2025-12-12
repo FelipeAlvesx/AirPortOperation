@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "Airport")
@@ -20,11 +21,17 @@ public class AirPort {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true, length = 3)
     private String code;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String city;
 
-    @OneToMany(mappedBy = "airport")
-    private List<Gate> gate;
+    @OneToMany(mappedBy = "airport", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Gate> gate = new ArrayList<>();
 
 }
