@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Entity(name = "Flight")
 @Table(name = "flight")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(of = "id")
@@ -45,6 +44,11 @@ public class Flight {
     private AirPort origin;
 
     @ManyToOne
-    @JoinColumn(name = "gate_id")
+    @JoinColumn(name = "gate_id", nullable = true)
     private Gate gate;
+
+    public Flight(){
+        this.gate = null;
+    }
+
 }

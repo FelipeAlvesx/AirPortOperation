@@ -20,7 +20,7 @@ public class Gate {
     private Long id;
 
     @Column(nullable = false)
-    private Long number;
+    private String number;
 
     @Column(nullable = false)
     private String terminal;

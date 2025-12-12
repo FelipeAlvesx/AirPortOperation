@@ -34,4 +34,6 @@ public class AirPort {
     @OneToMany(mappedBy = "airPort", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Gate> gates = new ArrayList<>();
 
+
+
 }
