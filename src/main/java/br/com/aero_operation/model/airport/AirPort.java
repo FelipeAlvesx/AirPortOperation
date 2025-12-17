@@ -3,10 +3,8 @@ package br.com.aero_operation.model.airport;
 import br.com.aero_operation.dtos.AirPortDto;
 import br.com.aero_operation.model.gate.Gate;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +30,9 @@ public class AirPort {
     @Column(nullable = false)
     private String city;
 
-    @OneToMany(mappedBy = "airPort", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "airport", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Gate> gates = new ArrayList<>();
 
     public AirPort(String code, String name, String city){

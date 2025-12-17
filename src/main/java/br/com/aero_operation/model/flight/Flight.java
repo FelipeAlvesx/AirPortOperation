@@ -47,8 +47,14 @@ public class Flight {
     @JoinColumn(name = "gate_id", nullable = true)
     private Gate gate;
 
-    public Flight(){
+    public Flight(String flightNumber, BigDecimal price, LocalDateTime departureTime, LocalDateTime arrivalTime, AirPort destination, AirPort origin) {
         this.gate = null;
+        this.flightNumber = flightNumber;
+        this.price = price;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.destination = destination;
+        this.origin = origin;
     }
 
 }

@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 public record AirPortDto(
 
         @NotBlank
-        @Max(3)
         String code,
 
         @NotBlank

@@ -36,7 +36,6 @@ public class GlobalExceptionHandler {
 //        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponseDto(ex));
 //    }
 
-
     private record DataValidationException(String field, String message){
 
         public DataValidationException(FieldError error){

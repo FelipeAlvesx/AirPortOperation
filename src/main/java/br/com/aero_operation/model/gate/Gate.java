@@ -2,10 +2,7 @@ package br.com.aero_operation.model.gate;
 
 import br.com.aero_operation.model.airport.AirPort;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity(name = "Gate")
 @Table(name = "gate")
@@ -27,6 +24,14 @@ public class Gate {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "airport_id", nullable = false)
-    private AirPort airPort;
+    @ToString.Exclude // <--- OBRIGATÓRIO: Evita loop infinito
+    @EqualsAndHashCode.Exclude
+    private AirPort airport;
+
+    public Gate(String number, String terminal, AirPort airport) {
+        this.number = number;
+        this.terminal = terminal;
+        this.airport = airport;
+    }
 
 }

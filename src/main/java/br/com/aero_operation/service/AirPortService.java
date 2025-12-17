@@ -14,7 +14,7 @@ public class AirPortService {
     private AirPortRepository airPortRepository;
 
     public AirPortDto createAirPort(AirPortDto airPortDto){
-        AirPort newAirPort = new AirPort(airPortDto.code(), airPortDto.city(), airPortDto.name());
+        AirPort newAirPort = new AirPort(airPortDto.code(), airPortDto.name(), airPortDto.city());
         airPortRepository.save(newAirPort);
         return new AirPortDto(newAirPort);
     }

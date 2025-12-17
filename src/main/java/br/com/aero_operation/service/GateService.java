@@ -19,14 +19,14 @@ public class GateService {
     @Autowired
     private AirPortRepository airportRepository;
 
-    public Gate createGate(GateRequestDTO data) {
+    public void createGate(GateRequestDTO data) {
 
-        // PASSO 1: Buscar o Aeroporto (A "Mãe" do relacionamento)
-        AirPort airport = airportRepository.findByCode(data.airportCode())
-                .orElseThrow(() -> new RuntimeException("Aiport not found: " + data.airportCode()));
+        // PASSO 1: Buscar o Aeroporto (A "Mãe" do relacionamento) -> criar AirPortNotFoundException
+        AirPort airport = airportRepository.findById(data.airportId())
+                .orElseThrow(() -> new RuntimeException("Aiport not found: "));
 
         // Precisamos garantir que não exista outro portão com mesmo número no mesmo terminal desse aeroporto
-        boolean exists = gateRepository.existsByAirPortAndTerminalAndNumber(
+        boolean exists = gateRepository.existsByAirportAndTerminalAndNumber(
                 airport, data.terminal(), data.gateNumber());
 
         if (exists) {
@@ -34,13 +34,10 @@ public class GateService {
         }
 
         // PASSO 3: Montar o Objeto
-        Gate newGate = new Gate();
-        newGate.setNumber(data.gateNumber());
-        newGate.setTerminal(data.terminal());
-        newGate.setAirPort(airport); // Aqui fazemos a ligação da Chave Estrangeira
+        Gate newGate = new Gate(data.gateNumber(), data.terminal(), airport);
+        // Aqui fazemos a ligação da Chave Estrangeira
 
         gateRepository.save(newGate);
 
-        return newGate;
     }
 }
