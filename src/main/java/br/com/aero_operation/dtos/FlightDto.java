@@ -1,6 +1,5 @@
 package br.com.aero_operation.dtos;
 
-import br.com.aero_operation.model.airport.AirPort;
 import br.com.aero_operation.model.flight.Flight;
 
 import java.math.BigDecimal;

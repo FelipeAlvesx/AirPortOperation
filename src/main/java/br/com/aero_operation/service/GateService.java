@@ -19,10 +19,10 @@ public class GateService {
     @Autowired
     private AirPortRepository airportRepository;
 
-    public void createGate(GateRequestDTO data) {
+    public void createGate(GateRequestDTO data, Long id) {
 
         // PASSO 1: Buscar o Aeroporto (A "Mãe" do relacionamento) -> criar AirPortNotFoundException
-        AirPort airport = airportRepository.findById(data.airportId())
+        AirPort airport = airportRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Aiport not found: "));
 
         // Precisamos garantir que não exista outro portão com mesmo número no mesmo terminal desse aeroporto

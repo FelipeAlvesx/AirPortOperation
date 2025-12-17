@@ -17,11 +17,5 @@ public class GateController {
     @Autowired
     private GateService gateService;
 
-    @PostMapping("/create")
-    @Transactional
-    public ResponseEntity<?> createGate(@Valid @RequestBody GateRequestDTO gateRequestDTO){
-        gateService.createGate(gateRequestDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
 
 }
