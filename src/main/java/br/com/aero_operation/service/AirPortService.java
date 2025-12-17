@@ -1,0 +1,25 @@
+package br.com.aero_operation.service;
+
+import br.com.aero_operation.controller.AirPortController;
+import br.com.aero_operation.dtos.AirPortDto;
+import br.com.aero_operation.model.airport.AirPort;
+import br.com.aero_operation.model.airport.AirPortRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AirPortService {
+
+    @Autowired
+    private AirPortRepository airPortRepository;
+
+    public AirPortDto createAirPort(AirPortDto airPortDto){
+        AirPort newAirPort = new AirPort(airPortDto.code(), airPortDto.city(), airPortDto.name());
+        airPortRepository.save(newAirPort);
+        return new AirPortDto(newAirPort);
+    }
+
+
+
+
+}

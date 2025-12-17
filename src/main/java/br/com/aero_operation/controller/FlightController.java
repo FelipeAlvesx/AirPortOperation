@@ -14,7 +14,7 @@ public class FlightController {
 
     @PostMapping("/create")
     public ResponseEntity<?> addFlight(@RequestBody FlightDto flightDto){
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.ok(flightDto);
     }
 
 

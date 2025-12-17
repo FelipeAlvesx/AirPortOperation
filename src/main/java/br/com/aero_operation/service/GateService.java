@@ -19,14 +19,12 @@ public class GateService {
     @Autowired
     private AirPortRepository airportRepository;
 
-    // Garante que tudo ou nada seja salvo (Rollback em caso de erro)
     public Gate createGate(GateRequestDTO data) {
 
         // PASSO 1: Buscar o Aeroporto (A "Mãe" do relacionamento)
         AirPort airport = airportRepository.findByCode(data.airportCode())
-                .orElseThrow(() -> new RuntimeException("Aeroporto não encontrado: " + data.airportCode()));
+                .orElseThrow(() -> new RuntimeException("Aiport not found: " + data.airportCode()));
 
-        // PASSO 2: Validar Duplicidade (Regra de Negócio)
         // Precisamos garantir que não exista outro portão com mesmo número no mesmo terminal desse aeroporto
         boolean exists = gateRepository.existsByAirPortAndTerminalAndNumber(
                 airport, data.terminal(), data.gateNumber());
@@ -41,7 +39,8 @@ public class GateService {
         newGate.setTerminal(data.terminal());
         newGate.setAirPort(airport); // Aqui fazemos a ligação da Chave Estrangeira
 
-        // PASSO 4: Salvar
-        return gateRepository.save(newGate);
+        gateRepository.save(newGate);
+
+        return newGate;
     }
 }

@@ -1,5 +1,6 @@
 package br.com.aero_operation.model.airport;
 
+import br.com.aero_operation.dtos.AirPortDto;
 import br.com.aero_operation.model.gate.Gate;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class AirPort {
     @Column(nullable = false, unique = true, length = 3)
     private String code;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String name;
 
     @Column(nullable = false)
@@ -34,6 +35,10 @@ public class AirPort {
     @OneToMany(mappedBy = "airPort", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Gate> gates = new ArrayList<>();
 
-
+    public AirPort(String code, String name, String city){
+        this.code = code;
+        this.name = name;
+        this.city = city;
+    }
 
 }
