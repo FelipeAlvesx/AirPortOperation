@@ -31,10 +31,15 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponseDto(ex));
     }
 
-//    @ExceptionHandler(BadRequestException.class)
-//    public ResponseEntity<ErrorResponseDto> handleBadRequestException(BadRequestException ex) {
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponseDto(ex));
-//    }
+    @ExceptionHandler(InvalidArrivalTimeException.class)
+    public ResponseEntity<ErrorResponseDto> handleInvalidArrivalTimeException(InvalidArrivalTimeException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponseDto(ex));
+    }
+
+    @ExceptionHandler(InvalidPriceException.class)
+    public ResponseEntity<ErrorResponseDto> handleInvalidPriceException(InvalidPriceException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponseDto(ex));
+    }
 
     private record DataValidationException(String field, String message){
 
