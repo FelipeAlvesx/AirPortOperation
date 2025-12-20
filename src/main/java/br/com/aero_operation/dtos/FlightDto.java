@@ -17,11 +17,11 @@ public record FlightDto(
         BigDecimal price,
 
         @Future
-        @NotBlank
+        @NotNull
         LocalDateTime departureTime,
 
         @Future
-        @NotBlank
+        @NotNull
         LocalDateTime arrivalTime,
 
         @NotNull
