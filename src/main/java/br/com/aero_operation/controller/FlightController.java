@@ -1,9 +1,7 @@
 package br.com.aero_operation.controller;
 
 import br.com.aero_operation.dtos.FlightDto;
-import br.com.aero_operation.dtos.GateRequestDTO;
 import br.com.aero_operation.service.FlightService;
-import br.com.aero_operation.service.GateService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

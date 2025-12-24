@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.Objects;
+
 
 @Service
 public class FlightService {
@@ -64,7 +63,7 @@ public class FlightService {
         // O voo deve ter duração mínima de 30 minutos
         Duration flightDuration = Duration.between(departure, arrival);
         if (flightDuration.toMinutes() < 30) {
-            throw new BusinessException("A duração do voo deve ser de no mínimo 30 minutos");
+            throw new BusinessException("the min duration for a flight is 30 minutes");
         }
     }
 }

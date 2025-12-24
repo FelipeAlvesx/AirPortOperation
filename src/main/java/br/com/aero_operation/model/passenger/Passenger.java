@@ -31,4 +31,11 @@ public class Passenger {
     @OneToMany(mappedBy = "passenger")
     private List<Ticket> tickets = new ArrayList<>();
 
+    public Passenger(String name, String email, String password, String passportNumber) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.passportNumber = passportNumber;
+    }
+
 }

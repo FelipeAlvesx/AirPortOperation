@@ -1,6 +1,5 @@
 package br.com.aero_operation.service;
 
-import br.com.aero_operation.controller.AirPortController;
 import br.com.aero_operation.dtos.AirPortDto;
 import br.com.aero_operation.model.airport.AirPort;
 import br.com.aero_operation.model.airport.AirPortRepository;

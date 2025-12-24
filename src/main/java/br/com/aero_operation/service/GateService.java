@@ -8,7 +8,6 @@ import br.com.aero_operation.model.gate.GateRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class GateService {
@@ -26,7 +25,7 @@ public class GateService {
                 airport, data.terminal(), data.gateNumber());
 
         if (exists) {
-            throw new RuntimeException("Este portão já existe neste terminal.");
+            throw new RuntimeException("this gate already in use.");
         }
 
         Gate newGate = new Gate(data.gateNumber(), data.terminal(), airport);
