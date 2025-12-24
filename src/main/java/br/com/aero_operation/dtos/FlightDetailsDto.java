@@ -10,7 +10,8 @@ public record FlightDetailsDto(
         LocalDateTime departureTime,
         LocalDateTime arrivalTime,
         Long destinationId,
-        Long originId
+        Long originId,
+        String gateNumber
         ) {
 
         public FlightDetailsDto(Flight flight){
@@ -20,7 +21,8 @@ public record FlightDetailsDto(
                         flight.getDepartureTime(),
                         flight.getArrivalTime(),
                         flight.getDestination().getId(),
-                        flight.getOrigin().getId()
+                        flight.getOrigin().getId(),
+                        flight.getGate() != null ? flight.getGate().getNumber() : null
                 );
         }
 }

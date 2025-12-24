@@ -2,7 +2,6 @@ package br.com.aero_operation.service;
 
 import br.com.aero_operation.dtos.FlightDetailsDto;
 import br.com.aero_operation.dtos.FlightDto;
-import br.com.aero_operation.dtos.FlightResponseDto;
 import br.com.aero_operation.infra.exception.BusinessException;
 import br.com.aero_operation.infra.exception.InvalidArrivalTimeException;
 import br.com.aero_operation.infra.exception.InvalidGateAllocationException;
