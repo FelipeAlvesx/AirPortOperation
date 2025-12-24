@@ -1,5 +1,6 @@
 package br.com.aero_operation.controller;
 
+import br.com.aero_operation.dtos.FlightDetailsDto;
 import br.com.aero_operation.dtos.FlightDto;
 import br.com.aero_operation.dtos.FlightGateAllocationDto;
 import br.com.aero_operation.model.flight.Flight;
@@ -31,20 +32,20 @@ public class FlightController {
 
     @PostMapping("/create")
     @Transactional
-    public ResponseEntity<FlightDto> addFlight(@Valid @RequestBody FlightDto flightDto){
+    public ResponseEntity<FlightDetailsDto> addFlight(@Valid @RequestBody FlightDto flightDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(flightService.createFlight(flightDto));
     }
 
     @PatchMapping("/{flightId}/allocate-gate")
     @Transactional
-    public ResponseEntity<FlightDto> allocateGate(@PathVariable Long flightId, @RequestBody FlightGateAllocationDto request) {
+    public ResponseEntity<FlightDetailsDto> allocateGate(@PathVariable Long flightId, @RequestBody FlightGateAllocationDto request) {
 
         Flight updatedFlight = flightService.allocateGateToFlight(flightId, request.gateId());
-        return ResponseEntity.status(HttpStatus.OK).body(new FlightDto(updatedFlight));
+        return ResponseEntity.status(HttpStatus.OK).body(new FlightDetailsDto(updatedFlight));
     }
 
     @GetMapping
-    public ResponseEntity<List<FlightDto>> getAllFlights() {
+    public ResponseEntity<List<FlightDetailsDto>> getAllFlights() {
         return ResponseEntity.status(HttpStatus.OK).body(flightService.getAllFlights());
     }
 

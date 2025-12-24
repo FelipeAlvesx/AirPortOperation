@@ -1,5 +1,7 @@
 package br.com.aero_operation.model.flight;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -7,6 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface FlightRepository extends JpaRepository<Flight, Long> {
 
-    @Query("SELECT f FROM Flight f WHERE f.gate.id = :gateId")
-    boolean findFlightByGateId(Long gateId);
+    @Query("select f from Flight f where f.gate.id = :gateId")
+    Optional<Flight> findFlightByGateId(Long gateId);
 }

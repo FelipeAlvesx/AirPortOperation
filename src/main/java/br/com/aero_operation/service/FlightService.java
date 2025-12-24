@@ -1,5 +1,6 @@
 package br.com.aero_operation.service;
 
+import br.com.aero_operation.dtos.FlightDetailsDto;
 import br.com.aero_operation.dtos.FlightDto;
 import br.com.aero_operation.dtos.FlightResponseDto;
 import br.com.aero_operation.infra.exception.BusinessException;
@@ -19,7 +20,7 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
+import java.util.Optional;  
 
 
 @Service
@@ -35,7 +36,7 @@ public class FlightService {
     private GateRepository gateRepository;
 
 
-    public FlightDto createFlight(FlightDto flightDto){
+    public FlightDetailsDto createFlight(FlightDto flightDto){
         var originAirPort = airPortRepository.findById(flightDto.originId()).orElseThrow(
                 () -> new RuntimeException("Origin airport not found"));
         var destinationAirPort = airPortRepository.findById(flightDto.destinationId()).orElseThrow(
@@ -54,7 +55,7 @@ public class FlightService {
         );
 
         flightRepository.save(flight);
-        return new FlightDto(flight);
+        return new FlightDetailsDto(flight);
     }
 
     public Flight allocateGateToFlight(Long flightId, Long gateId) {
@@ -72,8 +73,8 @@ public class FlightService {
     }
 
     private void validateNoConflict(Long flightId, Long gateId) {
-        boolean conflictingFlight = flightRepository.findFlightByGateId(gateId);
-        if (conflictingFlight) {
+        Optional<Flight> conflictingFlight = flightRepository.findFlightByGateId(gateId);
+        if (conflictingFlight.isPresent()) {
             throw new BusinessException("Gate is already allocated to another flight.");
         }
     }
@@ -110,9 +111,9 @@ public class FlightService {
         }
     }
 
-    public List<FlightDto> getAllFlights() {
+    public List<FlightDetailsDto> getAllFlights() {
         List<Flight> flights = flightRepository.findAll();
-        return flights.stream().map(FlightDto::new).toList();
+        return flights.stream().map(FlightDetailsDto::new).toList();
     }
 
 }
