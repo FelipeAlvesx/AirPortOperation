@@ -18,8 +18,4 @@ public class AirPortService {
         return new AirPortDto(newAirPort);
     }
 
-    public void GateKeeper(Long id) {
-        // Method implementation goes here
-    }
-
 }

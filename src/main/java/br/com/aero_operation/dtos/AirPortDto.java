@@ -1,7 +1,6 @@
 package br.com.aero_operation.dtos;
 
 import br.com.aero_operation.model.airport.AirPort;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 
 public record AirPortDto(

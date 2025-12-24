@@ -57,4 +57,7 @@ public class Flight {
         this.origin = origin;
     }
 
+    public Flight() {
+    }
+
 }
