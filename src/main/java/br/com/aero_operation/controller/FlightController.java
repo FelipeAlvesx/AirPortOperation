@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -39,7 +38,6 @@ public class FlightController {
     @PatchMapping("/{flightId}/allocate-gate")
     @Transactional
     public ResponseEntity<FlightDetailsDto> allocateGate(@PathVariable Long flightId, @RequestBody FlightGateAllocationDto request) {
-
         Flight updatedFlight = flightService.allocateGateToFlight(flightId, request.gateId());
         return ResponseEntity.status(HttpStatus.OK).body(new FlightDetailsDto(updatedFlight));
     }

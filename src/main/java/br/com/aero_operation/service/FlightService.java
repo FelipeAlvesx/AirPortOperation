@@ -37,9 +37,9 @@ public class FlightService {
 
     public FlightDetailsDto createFlight(FlightDto flightDto){
         var originAirPort = airPortRepository.findById(flightDto.originId()).orElseThrow(
-                () -> new RuntimeException("Origin airport not found"));
+                () -> new BusinessException("Origin airport not found"));
         var destinationAirPort = airPortRepository.findById(flightDto.destinationId()).orElseThrow(
-                () -> new RuntimeException("Destination airport not found"));
+                () -> new BusinessException("Destination airport not found"));
 
         validatePrice(flightDto.price());
         validateFlightTimes(flightDto.departureTime(), flightDto.arrivalTime());
@@ -82,8 +82,8 @@ public class FlightService {
         // O portão deve pertencer ao aeroporto de DESTINO
         if (!gate.getAirport().getId().equals(flight.getDestination().getId())) {
             throw new InvalidGateAllocationException(
-                "O portão " + gate.getNumber() + 
-                "nao pertence ao aeroporto de destino (" + 
+                "Gate " + gate.getNumber() + 
+                " does not belong to the destination airport (" + 
                 flight.getDestination().getCode() + ")"
             );
         }
@@ -96,7 +96,6 @@ public class FlightService {
     }
 
     private void validateFlightTimes(LocalDateTime departure, LocalDateTime arrival) {
-        LocalDateTime now = LocalDateTime.now();
 
         // A chegada deve ser depois da partida
         if (arrival.isBefore(departure) || arrival.isEqual(departure)) {

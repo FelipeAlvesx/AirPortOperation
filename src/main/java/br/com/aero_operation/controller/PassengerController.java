@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.aero_operation.dtos.PassengerDto;
 import br.com.aero_operation.service.PassengerService;
+import jakarta.validation.Valid;
 
 @RequestMapping("/passengers")
 @RestController
@@ -29,7 +30,7 @@ public class PassengerController {
 
     @PostMapping("/register")
     @Transactional
-    public ResponseEntity<?> Register(@RequestBody PassengerDto passengerDto) {
+    public ResponseEntity<?> Register(@Valid @RequestBody PassengerDto passengerDto) {
         var passenger = passengerService.register(passengerDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(passenger);
     }
